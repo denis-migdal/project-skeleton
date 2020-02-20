@@ -1,0 +1,26 @@
+{
+  "name": "project-skeleton",
+  "version": "0.0.0",
+  "description": "Enables to easily build your WebPack projects (Websites, WebExtensions, Node servers, Node commands, etc.) [in development].",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/denis-migdal/project-skeleton.git"
+  },
+  "keywords": [
+  ],
+  "author": "Denis Migdal",
+  "license": "MIT",
+  "bugs": {
+    "url": "https://github.com/denis-migdal/project-skeleton/issues"
+  },
+  "homepage": "https://github.com/denis-migdal/project-skeleton#readme",
+  "dependencies": {
+    "jquery": "^3.4.1",
+    "jsdom": "^16.1.0",
+    "loader-utils": "^1.2.3"
+  }
+}
