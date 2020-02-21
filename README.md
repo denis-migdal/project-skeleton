@@ -8,3 +8,7 @@
   <h1>Project Skeleton</h1>
   <p>Enables to easily build your WebPack projects (Websites, WebExtensions, Node servers, Node commands, etc.) [in development].<p>
 </div>
+
+
+
+LOCAL Installation: npm install $(npm pack <folder> | tail -1)
