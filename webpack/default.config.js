@@ -10,7 +10,8 @@ module.exports = (env, argv) => {
 
 	env.SKLT_WEBPACK_DIR = env.SKLT_WEBPACK_DIR || SKLT_WEBPACK_DIR;
 	env.PROJECT_DIR = env.PROJECT_DIR || PROJECT_DIR;
-	PROJECT_SRC_DIR = PROJECT_DIR + 'src/';
+
+	let PROJECT_SRC_DIR = env.PROJECT_DIR + 'src/';
 
 	let configs = [];
 	const build_list = env.src.split(',');
