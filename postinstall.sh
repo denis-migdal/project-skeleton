@@ -17,7 +17,7 @@ for(let script of scripts)
 
 
 //Output data
-console.log(JSON.stringify(data));
+console.log(JSON.stringify(data, null, '\t'));
 
 EOF
 
