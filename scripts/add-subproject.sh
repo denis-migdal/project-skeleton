@@ -16,6 +16,7 @@ do
 		echo "$var/webpack.config.js not found..."
 		echo "Creating $var/webpack.config.js..."
 		cp "$PS_PATH./webpack/default-subproject.config.js" "./src/$var/webpack.config.js"
+
 	fi
 
 done

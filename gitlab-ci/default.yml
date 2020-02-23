@@ -41,8 +41,6 @@ build-prod:
   artifacts:
     paths:
       - dist/prod
-  except:
-    - master
   dependencies: []
 
 validate-html:
