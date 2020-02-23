@@ -4,9 +4,16 @@ module.exports = (type, build, env, argv) => {
 
 	let config = base(type, build, env, argv);
 
-	config.node.fs = 'empty';
 
+	let root_dir = env.PROJECT_DIR;
 	let is_production = argv.mode == 'production';
+
+	let uri = type + '/' + build;
+	let output_dir = root_dir + '/dist/' + (is_production ? 'prod' : 'dev') + '/' + uri + '/';
+	let input_dir = root_dir + '/src/' + uri + '/';
+
+
+	config.node.fs = 'empty';
 
 	let rules = [
 
@@ -18,7 +25,8 @@ module.exports = (type, build, env, argv) => {
 				{
 					loader: 'file-loader',
 					options: {
-						name: "[name].[ext]"
+						name: "[path]/[name].[ext]",
+						context: input_dir
 					}
 				},
 				'extract-loader',
@@ -48,7 +56,7 @@ module.exports = (type, build, env, argv) => {
 			test: /\.css$/,
 			use: ['style-loader', 'css-loader']
 		}, {
-			test: /\.(png|jpg|gif|svg)$/,
+			test: /\.(png|jpg|gif|svg|eot|ttf|woff|woff2)$/,
 			loader: 'url-loader'
 		}
 	];
