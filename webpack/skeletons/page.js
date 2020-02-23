@@ -62,7 +62,7 @@ module.exports = (type, build, env, argv) => {
 	];
 
 	if( is_production )
-		config.module.rules[0].use.splice(1, 0, 'html-minifier-loader');
+		rules[0].use.splice(1, 0, 'html-minifier-loader');
 
 	config.module.rules.push(... rules);
 
