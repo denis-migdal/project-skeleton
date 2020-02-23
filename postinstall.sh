@@ -9,7 +9,7 @@ let data = require('../../package.old.json');
 
 //Manipulate data
 data.scripts['SKLT_build-dev'] = 'webpack --mode=development --config "\$SKLT_PROJECT_DIR./node_modules/project-skeleton/webpack/default.config.js" --env.PROJECT_DIR "\$SKLT_PROJECT_DIR"  --env.src ';
-data.scripts['SKLT_build-prod'] = 'webpack --mode=production --config "\$SKLT_PROJECT_DIR./node_modules/project-skeleton/config/webpack/default.config.js" --env.PROJECT_DIR "\$SKLT_PROJECT_DIR" --env.src ';
+data.scripts['SKLT_build-prod'] = 'webpack --mode=production --config "\$SKLT_PROJECT_DIR./node_modules/project-skeleton/webpack/default.config.js" --env.PROJECT_DIR "\$SKLT_PROJECT_DIR" --env.src ';
 
 data.scripts['SKLT_local-ci-dev'] = 'sudo gitlab-runner exec docker build-dev';
 
