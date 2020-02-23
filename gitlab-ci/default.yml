@@ -28,7 +28,7 @@ check:deps:
 build-dev:
   stage: build
   script:
-    - SKLT_PROJECT_DIR="$PROJECT" npm run SKLT_build-dev websites/@all
+    - SKLT_PROJECT_DIR="$PROJECT/" npm run SKLT_build-dev websites/@all
   artifacts:
     paths:
       - dist/dev
@@ -37,7 +37,7 @@ build-dev:
 build-prod:
   stage: build
   script:
-    - SKLT_PROJECT_DIR="$PROJECT" npm run SKLT_build-dev websites/@all
+    - SKLT_PROJECT_DIR="$PROJECT/" npm run SKLT_build-dev websites/@all
   artifacts:
     paths:
       - dist/prod
