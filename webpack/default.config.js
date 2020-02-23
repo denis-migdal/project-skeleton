@@ -2,14 +2,6 @@ const fs = require('fs');
 
 const SKLT_WEBPACK_DIR = __dirname + '/';
 const PROJECT_DIR = __dirname + '/../../../';
-const PROJECT_SRC_DIR = __dirname + '/../../../src/';
-
-SUBPROJECT_TYPES = {};
-
-const subproject_types_dirs = fs.readdirSync(PROJECT_SRC_DIR);
-for(let subproject_type of subproject_types_dirs)
-	SUBPROJECT_TYPES[subproject_type] = require(PROJECT_SRC_DIR + subproject_type + '/webpack.config.js');
-
 
 module.exports = (env, argv) => {
 
@@ -18,9 +10,17 @@ module.exports = (env, argv) => {
 
 	env.SKLT_WEBPACK_DIR = env.SKLT_WEBPACK_DIR || SKLT_WEBPACK_DIR;
 	env.PROJECT_DIR = env.PROJECT_DIR || PROJECT_DIR;
+	PROJECT_SRC_DIR = PROJECT_DIR + 'src/';
 
 	let configs = [];
 	const build_list = env.src.split(',');
+
+
+	let SUBPROJECT_TYPES = {};
+
+	const subproject_types_dirs = fs.readdirSync(PROJECT_SRC_DIR);
+	for(let subproject_type of subproject_types_dirs)
+		SUBPROJECT_TYPES[subproject_type] = require(PROJECT_SRC_DIR + subproject_type + '/webpack.config.js');
 
 	for(let build of build_list) {
 
