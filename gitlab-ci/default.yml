@@ -53,9 +53,7 @@ pages:
   stage: deploy
   script:
     - cd $PROJECT
-    - mkdir public/dev
-    - mkdir public/prod
-    - mv dist/* public/
+    - mv dist/ public/
   needs: ["build-dev", "build-prod"]
   artifacts:
     paths:
