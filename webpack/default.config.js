@@ -8,12 +8,7 @@ module.exports = (env, argv) => {
 	if( env === undefined || ! ('src' in env) )
 		return [];
 
-
-	console.log( env.SKLT_WEBPACK_DIR, SKLT_WEBPACK_DIR );
-
 	env.SKLT_WEBPACK_DIR = env.SKLT_WEBPACK_DIR || SKLT_WEBPACK_DIR;
-
-	console.log( env.PROJECT_DIR, PROJECT_DIR );
 
 
 	env.PROJECT_DIR = env.PROJECT_DIR || PROJECT_DIR;

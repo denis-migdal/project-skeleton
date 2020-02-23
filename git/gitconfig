@@ -2,5 +2,6 @@
 [alias]
 	nbranch = !git checkout master && git pull && git checkout -b $1 && :
 	pcommit = !git add -A && git commit -m "\"$1\"" && git push origin `git rev-parse --abbrev-ref HEAD` && : 
+	prequest = !git push origin `git rev-parse --abbrev-ref HEAD` -o merge_request.create -o merge_request.target=master && :
 	pbranch = !git add -A && git commit -m "\"$1\"" && git push origin `git rev-parse --abbrev-ref HEAD` -o merge_request.create -o merge_request.target=master && :
 	cleanall = git clean -xdf
