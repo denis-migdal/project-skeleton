@@ -22,7 +22,7 @@ module.exports = (type, build, env, argv) => {
 		if(page != 'webpack.config.js')
 			if( require(pages_dir + page + '/meta.json').use_in.includes(uri) ) {
 
-				let config = require( root_dir + 'src/pages/'+ page + '/webpack.config.js')('pages', page, env, argv);
+				let config = require( root_dir + 'src/pages/webpack.config.js')('pages', page, env, argv);
 				config.output.path = wconfig.output.path + '/' + page + '/';
 				configs.push( config );
 			}
