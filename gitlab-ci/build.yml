@@ -1,0 +1,45 @@
+
+before_script:
+  - export PROJECT=$(pwd)
+  - export NODE_PATH=$NODE_PATH:/opt/node_modules
+  - cp package.json /opt
+  - cd /opt
+  - npm install --no-optional --no-audit
+  - ln -s /opt/node_modules $PROJECT/node_modules
+
+after_script:
+  - cd $PROJECT
+
+check:deps:
+  stage: build
+  allow_failure: true
+  before_script:
+    - cp package.json /opt
+    - cd /opt
+  script:
+    - npm ls
+
+
+
+.build-dev:
+  stage: build
+  script:
+    - SKLT_PROJECT_DIR="$PROJECT/" npm run SKLT_build-dev @all/@all
+  artifacts:
+    paths:
+      - dist/dev
+  dependencies: []
+
+.build-prod:
+  stage: build
+  script:
+    - SKLT_PROJECT_DIR="$PROJECT/" npm run SKLT_build-prod @all/@all
+  artifacts:
+    paths:
+      - dist/prod
+  dependencies: []
+
+.validate-html:
+  stage: validate
+  script:
+    - npm run validate-html $PROJECT/dist

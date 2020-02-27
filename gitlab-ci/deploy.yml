@@ -1,0 +1,30 @@
+.pages:
+  stage: deploy
+  before_script:
+    - ''
+  script:
+    - mv dist/ public/
+  artifacts:
+    paths:
+      - public
+  only:
+    - master
+
+
+
+.push:
+  stage: deploy
+  script:
+    - cd $PROJECT
+    - SKLT_PROJECT_DIR="$PROJECT/" npm run SKLT_build-dev @all/@all
+    - SKLT_PROJECT_DIR="$PROJECT/" npm run SKLT_build-prod @all/@all
+    - 'which ssh-agent || ( apk add openssh-client )'
+    - 'which rsync || ( apk add rsync )'
+    - eval $(ssh-agent -s)
+    - echo "$SSH_KEY" | base64 -d | tr -d '\r' | ssh-add -
+    - mkdir -p ~/.ssh
+    - chmod 700 ~/.ssh
+    - echo "${KNOWN_HOSTS}" > ~/.ssh/known_hosts
+    - rsync -v -a dist ${USER}@${DOMAIN}:~/www
+  tags:
+    - deploy

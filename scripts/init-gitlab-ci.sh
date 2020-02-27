@@ -23,7 +23,9 @@ else
 fi
 
 echo "Adding gitlab ci"
-cp -r $PS_PATH./gitlab-ci ./.SKLT_gitlab-ci
+
+mkdir ./.SKLT_gitlab-ci
+cp $PS_PATH./gitlab-ci/* ./.SKLT_gitlab-ci
 
 
 cd $CURRENT_DIR

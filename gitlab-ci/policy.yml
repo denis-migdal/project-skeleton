@@ -1,0 +1,7 @@
+.check-confidentiality:
+  stage: policy
+  before_script:
+    - ''
+  script:
+    - >
+      find . -name meta.json -print0 | xargs -t -n1 -0 grep -L '"confidential": "false"'
