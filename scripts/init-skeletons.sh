@@ -25,10 +25,20 @@ do
 			cp "$PS_PATH./webpack/default-type.config.js" "./src/$var/webpack.config.js"
 		fi
 
+		if [ "$var" = "servers" ]
+			npm list socket.io || npm install socket.io
+			npm list socket.io-client || npm install socket.io-client
+			npm list bufferutil || npm install bufferutil
+			npm list utf-8-validate || npm install utf-8-validate
+			npm list node-loader || npm install node-loader
+		then
+
+		fi
+
 		if [ "$var" = "websites" ] || [ "$var" = "pages" ] || [ "$var" = "webextensions"  ]
 		then
 
-			npm list html-minifier-loader || npm install prehtml-loader
+			npm list html-minifier-loader || npm install html-minifier-loader
 			npm list prehtml-loader || npm install prehtml-loader
 			npm list extract-loader || npm install extract-loader
 			npm list html-loader || npm install html-loader

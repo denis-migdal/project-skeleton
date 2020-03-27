@@ -16,6 +16,12 @@ module.exports = (type, build, env, argv) => {
 	let input_dir = root_dir + '/src/' + uri + '/';
 
 	let pages_dir = env.PROJECT_DIR + 'src/pages/';
+
+	if( ! fs.existsSync(pages_dir) ) {
+		configs.push(wconfig);
+		return configs;
+	}
+
 	let pages = fs.readdirSync(pages_dir);
 
 	for(let page of pages)
