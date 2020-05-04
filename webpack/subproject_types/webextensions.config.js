@@ -1,43 +1,45 @@
-module.exports = (env, argv) => {
+const fs = require('fs');
+const CopyPlugin = require('copy-webpack-plugin');
+const ZipFilesPlugin = require('webpack-zip-files-plugin');
 
-	throw 'Not implemented yet !'
+let pages_config = require('../skeletons/page.js');
+
+module.exports = (type, build, env, argv) => {
+
+	let root_dir = env.PROJECT_DIR;
+	let is_production = argv.mode == 'production';
+
+	let uri = type + '/' + build;
+	let output_dir = root_dir + '/dist/' + (is_production ? 'prod' : 'dev') + '/' + uri + '/';
+	let input_dir = root_dir + '/src/' + uri + '/';
+
+
+	let config = pages_config(type, build, env, argv);
+
+
+	config.entry = {};
+
+	for(let file of fs.readdirSync(input_dir + '/entries') ) {
+
+		if( ! file.endsWith('.js') )
+			continue;
+
+		let name = file.split('.').slice(0,-1).join('.');
+		config.entry[name] = input_dir + '/entries/' + file;
+	}
+
+	config.plugins = config.plugins || [];
+	config.plugins.push( new CopyPlugin([{ from: '**', to: '.', context: input_dir + '/static' }]) )
+
+	config.plugins.push(
+		new ZipFilesPlugin({
+			entries: [
+				{ src: output_dir, dist: '/'}
+			],
+			output: output_dir + '/../' + build,
+			format: 'zip',
+		})
+	);
+
+	return config;
 };
-
-
-/* config_builders['apps'] = function(uri) {
-
-	let root_dir = __dirname;
-	let output_dir = __dirname + '/dist/' + uri;
-	let input_dir = __dirname + '/src/' + uri;
-
-	return {
-		module: {
-			rules: [
-				{
-					test: /\.css$/,
-					use: ['style-loader', 'css-loader']
-				},{
-					test: /\.json5$/,
-					use: 'json5-loader',
-					type: 'javascript/auto'
-				},
-			]
-		},
-		entry: {
-			content_script: input_dir + '/js/content_script/main.js',
-			background: input_dir + '/js/background/main.js',
-			menu: input_dir + '/js/menu/main.js'
-		},
-		plugins: [
-			new CopyPlugin([
-				{ from: '**', to: uri, context: input_dir + '/dist' },
-				{ from: '**', to: uri + '/demo', context: root_dir +'/dist/' + uri.replace('apps', 'modules') },
-			])
-		],
-		output:{
-			filename: uri + '/[name].bundle.js',
-			path: root_dir + '/dist/'
-		},
-		devtool: 'source-map'
-	};
-}*/
