@@ -1,6 +1,6 @@
 {
   "name": "project-skeleton",
-  "version": "0.0.16",
+  "version": "0.0.17",
   "description": "Enables to easily build your WebPack projects (Websites, WebExtensions, Node servers, Node commands, etc.) [in development].",
   "main": "index.js",
   "scripts": {

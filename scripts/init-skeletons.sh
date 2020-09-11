@@ -31,8 +31,6 @@ do
 			npm list bufferutil || npm install bufferutil
 			npm list utf-8-validate || npm install utf-8-validate
 			npm list node-loader || npm install node-loader
-		then
-
 		fi
 
 		if [ "$var" = "websites" ] || [ "$var" = "pages" ] || [ "$var" = "webextensions"  ]

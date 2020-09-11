@@ -41,5 +41,6 @@ check:deps:
 
 .validate-html:
   stage: validate
+  allow_failure: true
   script:
     - npm run validate-html $PROJECT/dist
