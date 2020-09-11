@@ -25,7 +25,7 @@ do
 			cp "$PS_PATH./webpack/default-type.config.js" "./src/$var/webpack.config.js"
 		fi
 
-		if [ "$var" = "servers" ]
+		if [ "$var" = "servers" ] ; then
 			npm list socket.io || npm install socket.io
 			npm list socket.io-client || npm install socket.io-client
 			npm list bufferutil || npm install bufferutil
